@@ -104,12 +104,12 @@ public class ServidorChat {
 						}
 					}else { // no es un mensaje privado
 						switch(linea.toLowerCase()) {
-							case "-w", "who":
+							case "-w", "-who":
 								for(String user : sala.keySet()) {
 									out.println("SRVdeHARUN :" + user);
 								}
 								break;
-							case "-h", "help":
+							case "-h", "-help":
 								help();
 							default:
 								difusion(user + " : " + linea);
