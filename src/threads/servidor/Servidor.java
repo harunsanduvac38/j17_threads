@@ -51,7 +51,7 @@ public class Servidor {
 				
 				String linea;
 				while ((linea = in.readLine()) != null) {
-					out.println("SRV: " + linea);
+					out.println("SRV de HARUN: " + linea);
 				}
 				
 			}catch (IOException e) {
