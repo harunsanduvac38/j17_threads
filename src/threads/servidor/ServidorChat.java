@@ -73,6 +73,7 @@ public class ServidorChat {
 					out.println("El usuario es incorrecto o ya existe ");
 					out.println("Por favor identifícate: ");
 					user = in.readLine();
+					user = user.replaceAll(" ", "_");
 					
 				}
 				
@@ -88,7 +89,8 @@ public class ServidorChat {
 				
 				
 				String linea;
-				while ((linea = in.readLine()) != null) {
+				boolean session = true;
+				while (session && (linea = in.readLine()) != null) {
 					
 					if(linea.length() > 0 && linea.charAt(0) == '@') { // mensaje privado
 						if(linea.contains(" ")) {
@@ -111,6 +113,17 @@ public class ServidorChat {
 								break;
 							case "-h", "-help":
 								help();
+								break;
+							case "-q", "-quit":
+								out.println("SRVdeHARUN : ADIÓS!");
+								sala.remove(user);
+								cant--;
+								difusion("SRVdeHARUN : " + user + " se ha desconectado");
+								log(user + " se ha desconectado");
+								log("hay " + cant + " usuarios en la sala");
+								session = false;
+								socket.close();
+								break;
 							default:
 								difusion(user + " : " + linea);
 						}
